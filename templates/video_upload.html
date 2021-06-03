@@ -1,0 +1,51 @@
+<html>
+
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    </head>
+
+    <body style="background-color: #28231d;">
+        
+        <div class="jumbotron jumbotron-fluid" style="background-color: white; padding-bottom: 2px;">
+            <div class="container">
+                <h1 class="display-4">Video Uploader</h1>
+              <p class="lead">Prototype to upload and play video in Flask.</p>
+            </div>
+        </div>
+
+        <center>
+            <div class="login" style="margin:5px;">
+                <h3 style="color: white;">Upload Your Video Here</h3>
+
+                <form action="/getvideo" method="POST" enctype="multipart/form-data"><br>
+                    <input type="file" name="vid" id="vid" required="required" style="background-color: white; border-radius: 14px; outline: none;"/>
+                    <br><br>
+                    <button type="submit" class="btn btn-outline-light" id="btn" >Play</button>
+                </form>
+
+                {% if filename != NULL %}
+
+                    <video width="400" controls>
+                        <source src="static\uploads\{{ filename }}" type="video/mp4">
+                        Your browser does not support HTML video.
+                    </video>
+                {% else %}
+                    <p></p>
+                {% endif %}
+
+	            <div>
+                {% if msg != NULL %}
+                    <p style="color: white;">
+                        <div style="background-color: #ebecf0; width: 50%;padding: 10px; border-radius: 4px;">{{ msg }} 
+                        </div>
+                    </p>
+                {% else %}
+                    <p></p>
+                {% endif %}
+                </div>
+                
+            </div>
+        </center>
+        
+    </body>
+</html>
